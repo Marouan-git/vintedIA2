@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "34880895534",
+    "project_id": "vintedia2-b311e",
+    "storage_bucket": "vintedia2-b311e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34880895534:android:30caa664755952a5d57dbf",
+        "android_client_info": {
+          "package_name": "com.example.vintedia2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX-nKjEjvMDhXG32_c2IfMMHlcFq2eP-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
