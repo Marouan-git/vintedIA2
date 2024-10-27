@@ -54,6 +54,10 @@ Ce type de modèles prend en entrée deux informations :
 ["a photo of a dress", "a photo of a t-shirt", "a photo of pants", "a photo of a jacket", "a photo of underwear", "a photo of shoes", "a photo of hat", "a photo of a sweater"]
 ```
 
+Ce modèle est donc capable de classifier les catégories suivantes : 
+```python
+["Robe", "T-shirt", "Pantalon", "Veste", "Sous-vêtements", "Chaussures", "Chapeau", "Pull"]
+```
 Ce modèle présente deux avantages notables comparé aux modèles de classiques :
 - Il a déjà été entraîné sur des millions d'images, nul besoin de le ré-entraîner.
 - Il est généralisable à un grand nombre de catégories, inutile de collecter un nouveau dataset avec des nouvelles catégories, pour en ajouter des nouvelles il suffit des les ajouter à la liste de catégories donnée en entrée du modèle.
@@ -62,7 +66,7 @@ Ce modèle présente deux avantages notables comparé aux modèles de classiques
   
 Un autre modèle similaire mais plus léger développé par Apple et nommé [MobileCLIP](https://huggingface.co/apple/MobileCLIP-S1) a aussi été testé. Cependant, il n'a pas été retenu car le processus de quantification sur ce modèle ne permet pas de conserver une précision acceptable.  
   
-Ces expérimentations et l'export du modèle d'IA sont disponible dans le notebook [clothes-classification.ipynb](./ai_model/clothes_classification.ipynb) dans le dossier [ai_model](./ai_model/).  
+Ces expérimentations et l'export du modèle d'IA sont disponible dans le notebook [clothes-classification.ipynb](./ai_model/clothes_classification.ipynb) dans le dossier [ai_model/](./ai_model/).  
 
 ### Workflow de déploiement du modèle sur Flutter
 
@@ -82,7 +86,7 @@ Voici les étapes nécessaires pour exporter le modèle au format onnx :
 - Exporter le modèle au format .onnx.
 - Quantifier le modèle pour réduire sa taille : on passe de 600 MB à 150 MB avec une perte de précision non significative. 
 
-Toutes ces étapes sont réalisées dans le notebook [clothes-classification.ipynb](./ai_model/clothes_classification.ipynb) dans le dossier [ai_model](./ai_model/).
+Toutes ces étapes sont réalisées dans le notebook [clothes-classification.ipynb](./ai_model/clothes_classification.ipynb) dans le dossier [ai_model/](./ai_model/).
 
 #### Utilisation du modèle dans Flutter
 
