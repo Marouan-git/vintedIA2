@@ -122,47 +122,50 @@ class _CartPageState extends State<CartPage> {
       );
     }
 
-    return Column(
-      children: [
-        Expanded(
-          child: ListView.builder(
-            itemCount: _cartItems.length,
-            itemBuilder: (context, index) {
-              var item = _cartItems[index];
-
-              return ListTile(
-                leading: Image.network(
-                  item['imageUrl'],
-                  width: 50,
-                  height: 50,
-                  fit: BoxFit.cover,
-                ),
-                title: Text(item['title']),
-                subtitle: Text('Taille : ${item['size']}'),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('${item['price']} €'),
-                    IconButton(
-                      icon: Icon(Icons.close),
-                      onPressed: () {
-                        _removeFromCart(item['clotheId']);
-                      },
-                    ),
-                  ],
-                ),
-              );
-            },
+    return Padding(
+      padding: const EdgeInsets.only(top: 30.0),
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: _cartItems.length,
+              itemBuilder: (context, index) {
+                var item = _cartItems[index];
+      
+                return ListTile(
+                  leading: Image.network(
+                    item['imageUrl'],
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
+                  title: Text(item['title']),
+                  subtitle: Text('Taille : ${item['size']}'),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('${item['price']} €'),
+                      IconButton(
+                        icon: Icon(Icons.close),
+                        onPressed: () {
+                          _removeFromCart(item['clotheId']);
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            'Total : ${_totalPrice.toStringAsFixed(2)} €',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Total : ${_totalPrice.toStringAsFixed(2)} €',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

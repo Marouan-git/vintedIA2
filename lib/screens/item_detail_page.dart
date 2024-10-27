@@ -59,7 +59,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
       if (cartDoc.exists) {
         // Mettre à jour le panier existant
         await cartRef.update({
-          'items': FieldValue.arrayUnion([{"clotheId":widget.clotheId}]),
+          'items': FieldValue.arrayUnion([{"clotheId": widget.clotheId}]),
         });
       } else {
         // Créer un nouveau panier
@@ -95,29 +95,36 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
         title: Text('Détail du vêtement'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(30.0),
         child: Column(
           children: [
-            Image.network(
-              _clotheData!['imageUrl'],
-              height: 200,
-              fit: BoxFit.cover,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.network(
+                    _clotheData!['imageUrl'],
+                    height: 200,
+                    fit: BoxFit.cover,
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    _clotheData!['title'],
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 8),
+                  Text('Catégorie : ${_clotheData!['category']}'),
+                  Text('Taille : ${_clotheData!['size']}'),
+                  Text('Marque : ${_clotheData!['brand']}'),
+                  SizedBox(height: 8),
+                  Text(
+                    '${_clotheData!['price']} €',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
             ),
-            SizedBox(height: 16),
-            Text(
-              _clotheData!['title'],
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Text('Catégorie : ${_clotheData!['category']}'),
-            Text('Taille : ${_clotheData!['size']}'),
-            Text('Marque : ${_clotheData!['brand']}'),
-            SizedBox(height: 8),
-            Text(
-              '${_clotheData!['price']} €',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

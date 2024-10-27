@@ -137,20 +137,42 @@ class _AddClothingItemPageState extends State<AddClothingItemPage> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(
           children: [
-            GestureDetector(
-              onTap: _pickImage,
-              child: _imageFile != null
-                  ? Image.file(_imageFile!, height: 200, fit: BoxFit.cover)
-                  : Container(
-                      height: 200,
-                      color: Colors.grey[300],
-                      child: Icon(Icons.add_a_photo, size: 50, color: Colors.grey[700]),
-                    ),
+            Padding(
+              padding: const EdgeInsets.only(top: 30.0),
+              child: GestureDetector(
+                onTap: _pickImage,
+                child: _imageFile != null
+                    ? ClipOval(
+                        child: Image.file(
+                          _imageFile!,
+                          height: 100,
+                          width: 100, 
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : ClipOval(
+                        child: Container(
+                          height: 100,
+                          width: 100, 
+                          color: Colors.grey[200],
+                          child: Icon(
+                            Icons.add_a_photo,
+                            size: 50,
+                            color: Colors.grey[700],
+                          ),
+                        ),
+                      ),
+              ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 8), // Espacement entre l'image et le texte
+            const Text(
+              'Ajouter des photos',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
+            SizedBox(height: 32),
             TextField(
               controller: _titleController,
               decoration: InputDecoration(labelText: 'Titre'),
@@ -178,7 +200,7 @@ class _AddClothingItemPageState extends State<AddClothingItemPage> {
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             ),
-            SizedBox(height: 32),
+            SizedBox(height: 64),
             ElevatedButton(
               onPressed: _saveClothingItem,
               child: Text('Valider'),

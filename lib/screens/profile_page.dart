@@ -124,86 +124,85 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(''),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // Login (lecture seule)
-            TextField(
-              controller: _loginController,
-              decoration: InputDecoration(labelText: 'Login'),
-              readOnly: true,
-            ),
-            SizedBox(height: 16),
-            // Mot de passe (obfusqué)
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Mot de passe'),
-              obscureText: true,
-            ),
-            SizedBox(height: 16),
-            // Anniversaire
-            TextField(
-              controller: _birthdayController,
-              decoration: InputDecoration(
-                labelText: 'Date de naissance',
-                suffixIcon: Icon(Icons.calendar_today),
+    return Padding(
+      padding: const EdgeInsets.only(top: 30.0),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              // Login (lecture seule)
+              TextField(
+                controller: _loginController,
+                decoration: InputDecoration(labelText: 'Login'),
+                readOnly: true,
               ),
-              readOnly: true,
-              onTap: () => _selectDate(context),
-            ),
-            SizedBox(height: 16),
-            // Adresse
-            TextField(
-              controller: _addressController,
-              decoration: InputDecoration(labelText: 'Adresse'),
-            ),
-            SizedBox(height: 16),
-            // Code postal (clavier numérique)
-            TextField(
-              controller: _postalCodeController,
-              decoration: InputDecoration(labelText: 'Code postal'),
-              keyboardType: TextInputType.number,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            ),
-            SizedBox(height: 16),
-            // Ville
-            TextField(
-              controller: _cityController,
-              decoration: InputDecoration(labelText: 'Ville'),
-            ),
-            SizedBox(height: 32),
-            // Bouton Ajouter un vêtement
-            ElevatedButton(
-              onPressed: () {
-                // Naviguer vers la page d'ajout de vêtement
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddClothingItemPage(),
-                  ),
-                );
-              },
-              child: Text('Ajouter un vêtement'),
-            ),
-            SizedBox(height: 16),
-            // Bouton Valider
-            ElevatedButton(
-              onPressed: _saveUserData,
-              child: Text('Valider'),
-            ),
-            SizedBox(height: 16),
-            // Bouton Se déconnecter
-            ElevatedButton(
-              onPressed: _logout,
-              child: Text('Se déconnecter'),
-            ),
-          ],
+              SizedBox(height: 16),
+              // Mot de passe (obfusqué)
+              TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(labelText: 'Mot de passe'),
+                obscureText: true,
+              ),
+              SizedBox(height: 16),
+              // Anniversaire
+              TextField(
+                controller: _birthdayController,
+                decoration: InputDecoration(
+                  labelText: 'Date de naissance',
+                  suffixIcon: Icon(Icons.calendar_today),
+                ),
+                readOnly: true,
+                onTap: () => _selectDate(context),
+              ),
+              SizedBox(height: 16),
+              // Adresse
+              TextField(
+                controller: _addressController,
+                decoration: InputDecoration(labelText: 'Adresse'),
+              ),
+              SizedBox(height: 16),
+              // Code postal (clavier numérique)
+              TextField(
+                controller: _postalCodeController,
+                decoration: InputDecoration(labelText: 'Code postal'),
+                keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              ),
+              SizedBox(height: 16),
+              // Ville
+              TextField(
+                controller: _cityController,
+                decoration: InputDecoration(labelText: 'Ville'),
+              ),
+              SizedBox(height: 32),
+              // Bouton Ajouter un vêtement
+              ElevatedButton(
+                onPressed: () {
+                  // Naviguer vers la page d'ajout de vêtement
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddClothingItemPage(),
+                    ),
+                  );
+                },
+                child: Text('Ajouter un vêtement'),
+              ),
+              SizedBox(height: 16),
+              // Bouton Valider
+              ElevatedButton(
+                onPressed: _saveUserData,
+                child: Text('Valider'),
+              ),
+              SizedBox(height: 16),
+              // Bouton Se déconnecter
+              ElevatedButton(
+                onPressed: _logout,
+                child: Text('Se déconnecter'),
+              ),
+            ],
+          ),
         ),
       ),
     );

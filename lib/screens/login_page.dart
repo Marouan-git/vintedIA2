@@ -16,14 +16,19 @@ class _LoginPageState extends State<LoginPage> {
   // Instance de FirebaseAuth
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  // Variable pour le message d'erreur
+  String? _errorMessage;
+
   // Fonction pour gérer la connexion
   void _signIn() async {
     String login = _loginController.text.trim();
     String password = _passwordController.text;
 
     if (login.isEmpty || password.isEmpty) {
-      // Les champs sont vides, on ne fait rien
-      print('Les champs ne doivent pas être vides.');
+      // Les champs sont vides, afficher un message d'erreur
+      setState(() {
+        _errorMessage = 'Les champs ne doivent pas être vides.';
+      });
       return;
     }
 
@@ -37,16 +42,21 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushReplacementNamed(context, '/home');
     } on FirebaseAuthException catch (e) {
       // Gestion des erreurs de connexion
-      if (e.code == 'user-not-found') {
-        print('Aucun utilisateur trouvé pour cet email.');
-      } else if (e.code == 'wrong-password') {
-        print('Mot de passe incorrect.');
-      } else {
-        print('Erreur lors de la connexion : ${e.message}');
-      }
+      setState(() {
+        if (e.code == 'user-not-found') {
+          _errorMessage = 'Aucun utilisateur trouvé pour cet email.';
+        } else if (e.code == 'wrong-password') {
+          _errorMessage = 'Mot de passe incorrect.';
+        } else {
+          _errorMessage = 'Login ou mot de passe incorrect';
+        }
+      });
+      
     } catch (e) {
-      print('Erreur : $e');
-    }
+      setState(() {
+        _errorMessage = 'Erreur : $e';
+      });
+  }
   }
 
   @override
@@ -60,6 +70,7 @@ class _LoginPageState extends State<LoginPage> {
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
                 controller: _loginController,
@@ -75,6 +86,13 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 obscureText: true, // Le champ est obfusqué
               ),
+              const SizedBox(height: 16),
+              // Afficher le message d'erreur s'il y en a un
+              if (_errorMessage != null)
+                Text(
+                  _errorMessage!,
+                  style: const TextStyle(color: Colors.red),
+                ),
               const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: _signIn,
