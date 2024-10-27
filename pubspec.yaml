@@ -25,5 +25,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/model/clip_clothes_classification.onnx
     - assets/model/clip_clothes_classification_quant.onnx

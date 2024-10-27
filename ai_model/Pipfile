@@ -13,6 +13,8 @@ onnxruntime = "*"
 ipykernel = "*"
 typing-extensions = ">=4.5"
 numpy = "*"
+open-clip-torch = "*"
+onnx-simplifier = "*"
 
 [dev-packages]
 
