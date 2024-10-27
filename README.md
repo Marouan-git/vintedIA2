@@ -34,6 +34,12 @@ Une autre solution pour éviter ces prérequis liés à la mémoire aurait été
 Les images pour tester le modèle d'IA sont disponibles dans le dossier [ai_model/](./ai_model/img_test/).  
 Il s'agit d'images quelconques téléchargées sur le web.
 
+### Installation des dépendances
+
+```
+flutter pub get
+```
+
 ## Structure des dossiers principaux
 
 - [ai_model/](./ai_model/) : contient le notebook utilisé pour tester et exporter le modèle d'IA au format onnx, ainsi que les images de test.
